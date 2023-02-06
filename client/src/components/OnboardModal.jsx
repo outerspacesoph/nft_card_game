@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
-import Modal from 'react-modal';
+import { useState, useEffect } from "react";
+import Modal from "react-modal";
 
-import styles from '../styles';
-import { CustomButton } from '.';
-import { useGlobalContext } from '../context';
-import { GetParams, SwitchNetwork } from '../utils/onboard.js';
+import styles from "../styles";
+import { CustomButton } from ".";
+import { useGlobalContext } from "../context";
+import { GetParams, SwitchNetwork } from "../utils/onboard.js";
 
 const OnboardModal = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -20,11 +20,11 @@ const OnboardModal = () => {
   useEffect(() => {
     resetParams();
 
-    window?.ethereum?.on('chainChanged', () => {
+    window?.ethereum?.on("chainChanged", () => {
       resetParams();
     });
 
-    window?.ethereum?.on('accountsChanged', () => {
+    window?.ethereum?.on("accountsChanged", () => {
       resetParams();
     });
   }, []);
@@ -35,11 +35,13 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              You don't have Core Wallet installed!
+              You don't have Metamask installed!
             </p>
             <CustomButton
-              title="Download Core"
-              handleClick={() => window.open('https://core.app/', '_blank')}
+              title="Download Metamask"
+              handleClick={() =>
+                window.open("https://metamask.io/download/", "_blank")
+              }
             />
           </>
         );
@@ -48,7 +50,7 @@ const OnboardModal = () => {
         return (
           <>
             <p className={styles.modalText}>
-              You haven't connected your account to Core Wallet!
+              You haven't connected your account to Metamask!
             </p>
             <CustomButton
               title="Connect Account"
@@ -75,7 +77,9 @@ const OnboardModal = () => {
             </p>
             <CustomButton
               title="Grab some test tokens"
-              handleClick={() => window.open('https://faucet.avax.network/', '_blank')}
+              handleClick={() =>
+                window.open("https://faucet.avax.network/", "_blank")
+              }
             />
           </>
         );
